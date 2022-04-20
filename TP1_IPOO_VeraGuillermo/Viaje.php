@@ -56,14 +56,14 @@ class Viaje{
     public function __toString() {
         return "Codigo de viaje: ".$this->getCodigoViaje().", Destino: ".$this->getDestino().
         ".\nCantidad maxima de pasajeros: ".$this->getMaximoPasajeros().", Pasajeros actuales en el viaje: ".$this->getPasajerosActual().
-        ".";
+        ".\n".$this->mostrarPasajeros();
     }
 
     public function mostrarPasajeros(){
         $arrayPas = [];
         $arrayPas = $this->getPasajeros();
         $countPas = $this->getPasajerosActual();
-
+        echo "Datos de pasajeros: \n";
         for ($i=0; $i < $countPas; $i++) { 
             echo "Nombre: ".$arrayPas[$i]["nombre"].", Apellido: ".$arrayPas[$i]["apellido"].". Documento: ".$arrayPas[$i]["nroDocumento"].".\n";
         }

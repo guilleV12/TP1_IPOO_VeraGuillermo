@@ -98,8 +98,6 @@ $arrayPasajeros[8] = ["nombre"=>"Maria", "apellido"=>"Banega", "nroDocumento"=>4
         //*******************************************/
         echo "Datos del viaje: \n".$viaje1->__toString();
         echo "\n";
-        echo $viaje1->mostrarPasajeros();
-        echo "\n";
         
         }
 

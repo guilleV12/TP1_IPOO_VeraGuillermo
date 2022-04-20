@@ -1,17 +1,30 @@
 <?php
 include 'Viaje.php';
+include 'Pasajero.php';
+include 'ResponsableV.php';
 
-//Arreglo de Pasajeros.
+//Arreglo de objetos pasajero.
+$pasajero1 = new Pasajero("Jorge", "Gonzales", 13727931, 2944121212);
+$pasajero2 = new Pasajero("Pablo", "Fernandez", 21729034, 2944232323);
+$pasajero3 = new Pasajero("Cristian", "Lopez", 40194852, 2944343434);
+$pasajero4 = new Pasajero("Pablo", "Diaz", 98374263, 2944454545);
+$pasajero5 = new Pasajero("Carlos", "Perez", 13755931, 2944121299);
+$pasajero6 = new Pasajero("Carlos", "Leiva", 32845721, 2944565656);
+$pasajero7 = new Pasajero("Agustina", "Sanchez", 32957843, 2944676767);
+$pasajero8 = new Pasajero("Camila", "Caruso", 33912738, 2944787878);
+$pasajero9 = new Pasajero("Maria", "Banega", 41893857, 2944898989);
+
+
 $arrayPasajeros = [];
-$arrayPasajeros[0] = ["nombre"=>"Jorge", "apellido"=>"Gonzales", "nroDocumento"=>13727931];
-$arrayPasajeros[1] = ["nombre"=>"Gonzalo", "apellido"=>"Perez", "nroDocumento"=>32845710];
-$arrayPasajeros[2] = ["nombre"=>"Pablo", "apellido"=>"Fernandez", "nroDocumento"=>21729034];
-$arrayPasajeros[3] = ["nombre"=>"Fernando", "apellido"=>"Diaz", "nroDocumento"=>98374263];
-$arrayPasajeros[4] = ["nombre"=>"Cristian", "apellido"=>"Lopez", "nroDocumento"=>40194852];
-$arrayPasajeros[5] = ["nombre"=>"Carlos", "apellido"=>"Leiva", "nroDocumento"=>32845721];
-$arrayPasajeros[6] = ["nombre"=>"Agustina", "apellido"=>"Sanchez", "nroDocumento"=>32957843];
-$arrayPasajeros[7] = ["nombre"=>"Camila", "apellido"=>"Caruso", "nroDocumento"=>33912738];
-$arrayPasajeros[8] = ["nombre"=>"Maria", "apellido"=>"Banega", "nroDocumento"=>41893857];
+$arrayPasajeros[0] = $pasajero1;
+$arrayPasajeros[1] = $pasajero2;
+$arrayPasajeros[2] = $pasajero3;
+$arrayPasajeros[3] = $pasajero4;
+$arrayPasajeros[4] = $pasajero5;
+$arrayPasajeros[5] = $pasajero6;
+$arrayPasajeros[6] = $pasajero7;
+$arrayPasajeros[7] = $pasajero8;
+$arrayPasajeros[8] = $pasajero9;
 
     /* Programa Principal */
 
@@ -32,7 +45,7 @@ $arrayPasajeros[8] = ["nombre"=>"Maria", "apellido"=>"Banega", "nroDocumento"=>4
 
 
             $cantPasajActual = count($arrayPasajeros);
-            $viaje1 = new Viaje($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros);
+            $viaje1 = new Viaje($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "");
 
 
         //Bloque de modificar datos.
@@ -89,17 +102,55 @@ $arrayPasajeros[8] = ["nombre"=>"Maria", "apellido"=>"Banega", "nroDocumento"=>4
             echo "Ingrese el apellido del pasajero: \n";
             $apellidoMod = trim(fgets(STDIN));
 
-            echo "Ingrese el documento del pasajero: \n";
-            $documentoMod = trim(fgets(STDIN));
+            echo "Ingrese el telefono del pasajero: \n";
+            $telefonoMod = trim(fgets(STDIN));
 
-            $viaje1->cambiarDatosUnPasajero($nroDocPasajero, $nombreMod, $apellidoMod, $documentoMod);
+            $viaje1->cambiarDatosUnPasajero($nroDocPasajero, $nombreMod, $apellidoMod, $telefonoMod);
         }
 
 
+
+        //Agregar pasajeros al viaje.
+        //***************************** */
+        echo "Desea agregar un pasajero: \n";
+        $respAgregarPas = trim(fgets(STDIN));
+        if ($respAgregarPas == "si"){
+            echo "Ingrese el numero de documento: \n";
+            $nroDocumentoNuevo = trim(fgets(STDIN));
+    
+                echo "Datos pasajero a agregar \n";
+    
+                echo "Ingrese el nombre del pasajero nuevo: \n";
+                $nombreMod = trim(fgets(STDIN));
+    
+                echo "Ingrese el apellido del pasajero nuevo: \n";
+                $apellidoMod = trim(fgets(STDIN));
+    
+                echo "Ingrese el telefono del pasajero nuevo: \n";
+                $telefonoMod = trim(fgets(STDIN));
+                
+                $viaje1->agregarPasajero($nroDocumentoNuevo, $nombreMod, $apellidoMod, $telefonoMod);
+        }
+
+        //Agregar datos del responsable del viaje.
+        //***************************** */
+        echo "Datos del responsable del viaje\n";
+        echo "Ingrese el numero del numero de empleado: \n";
+        $numEmpleado = trim(fgets(STDIN));
+        echo "Ingrese el numero licencia: \n";
+        $numLicencia = trim(fgets(STDIN));
+        echo "Ingrese el nombre: \n";
+        $nombreEmpleado = trim(fgets(STDIN));
+        echo "Ingrese el apellido: \n";
+        $apellidoEmpleado = trim(fgets(STDIN));
+        $responsable1 = new ResponsableV($numEmpleado, $numLicencia, $nombreEmpleado, $apellidoEmpleado);
+        $viaje1->setResponsableViaje($responsable1);
+
+
+        
         //Bloque para mostrar informacion.
         //*******************************************/
         echo "Datos del viaje: \n".$viaje1->__toString();
         echo "\n";
         
         }
-

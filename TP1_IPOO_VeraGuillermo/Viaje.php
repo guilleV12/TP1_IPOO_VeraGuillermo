@@ -70,17 +70,32 @@ class Viaje{
     }
 
     /** metodo que permite modificar los datos de un pasajero 
-     * @param int $numPas, $doc
+     * @param int $nroDocPas, $doc
      * @param string $nom, $ape
      * @return void
     */
-    public function cambiarDatosUnPasajero($numPas, $nom, $ape, $doc){
+    public function cambiarDatosUnPasajero($nroDocPas, $nom, $ape, $doc){
         $arrPasajeros = [];
         $arrPasajeros = $this->getPasajeros();
-        $arrPasajeros[$numPas]["nombre"] = $nom;
-        $arrPasajeros[$numPas]["apellido"] = $ape;
-        $arrPasajeros[$numPas]["nroDocumento"] = $doc;
-        $this->setPasajeros($arrPasajeros);
+        $cantPasajeros = $this->getPasajerosActual();
+        $i = 0;
+        $bandera = false;
+        $indiceModificar = null;
+        while ($i < $cantPasajeros && $bandera == false){
+            if ($nroDocPas == $arrPasajeros[$i]["nroDocumento"]){
+                $bandera = true;
+                $indiceModificar = $i;
+            }
+            $i++;
+        }
+        if ($i <= $cantPasajeros){
+            $arrPasajeros[$indiceModificar]["nombre"] = $nom;
+            $arrPasajeros[$indiceModificar]["apellido"] = $ape;
+            $arrPasajeros[$indiceModificar]["nroDocumento"] = $doc;
+            $this->setPasajeros($arrPasajeros);
+        } else {
+            echo "\nNo hay un pasajero con ese numero de documento\n";
+        }
     }
 
 }

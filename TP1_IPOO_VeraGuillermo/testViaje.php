@@ -78,8 +78,10 @@ $arrayPasajeros[8] = ["nombre"=>"Maria", "apellido"=>"Banega", "nroDocumento"=>4
         $respModPas = trim(fgets(STDIN));
         if ($respModPas == "si" ){
 
-            echo "Ingrese el numero del pasajero: \n";
-            $indice = (trim(fgets(STDIN))) - 1;
+            echo "Ingrese el numero de documento del pasajero actual para modificar sus datos: \n";
+            $nroDocPasajero = (trim(fgets(STDIN)));
+
+            echo "Datos nuevos \n";
 
             echo "Ingrese el nombre del pasajero: \n";
             $nombreMod = trim(fgets(STDIN));
@@ -90,7 +92,7 @@ $arrayPasajeros[8] = ["nombre"=>"Maria", "apellido"=>"Banega", "nroDocumento"=>4
             echo "Ingrese el documento del pasajero: \n";
             $documentoMod = trim(fgets(STDIN));
 
-            $viaje1->cambiarDatosUnPasajero($indice, $nombreMod, $apellidoMod, $documentoMod);
+            $viaje1->cambiarDatosUnPasajero($nroDocPasajero, $nombreMod, $apellidoMod, $documentoMod);
         }
 
 

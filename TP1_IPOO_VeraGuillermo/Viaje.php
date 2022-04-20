@@ -120,9 +120,10 @@ class Viaje{
         if ($i < $cantPasaj){
             echo "Ese pasajero ya esta registrado.\n";
         }else{
-            $arrayPasaj[$cantPasaj] = new Pasajero($nom, $ape, $numDoc, $tel);
-            $this->setPasajeros($arrayPasaj);
             $this->setPasajerosActual($cantPasaj+1);
+            $nuevoPasaj = new Pasajero($nom, $ape, $numDoc, $tel);
+            $arrayPasaj[$i+1] = $nuevoPasaj;
+            $this->setPasajeros($arrayPasaj);
         }
     }
 

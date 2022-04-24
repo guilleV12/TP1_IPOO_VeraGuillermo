@@ -47,91 +47,110 @@ $arrayPasajeros[8] = $pasajero9;
             $cantPasajActual = count($arrayPasajeros);
             $viaje1 = new Viaje($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "");
 
+        //Switch para ejecutar metodos
+        do {    
+            echo "\n----Menu opciones:------\n\n";
+            echo "1 - modificar datos del viaje\n";
+            echo "2 - modificar datos de un pasajero\n";
+            echo "3 - agregar un pasajero\n";
+            echo "4 - salir del menu\n";
+            $varSwitch = trim(fgets(STDIN));
+            switch ($varSwitch) {
+                case 1:
+                    //Metodo modificarViaje objeto Viaje.
+                    //****************************************/
+                    echo "Desea modificar los datos del viaje? \n";
+                    $respMod = trim(fgets(STDIN));
+                    if ($respMod == "si"){
 
-        //Metodo modificarPasajero objeto Viaje.
-        //****************************************/
-        echo "Desea modificar los datos del viaje? \n";
-        $respMod = trim(fgets(STDIN));
-        if ($respMod == "si"){
+                        echo "Desea modificar el codigo de viaje? \n";
+                        $respC = trim(fgets(STDIN));
+                        if ($respC == "si"){
 
-            echo "Desea modificar el codigo de viaje? \n";
-            $respC = trim(fgets(STDIN));
-            if ($respC == "si"){
+                            echo "Ingrese el codigo de viaje nuevo: \n";
+                            $codViajeMod = trim(fgets(STDIN));
+                            $viaje1->setCodigoViaje($codViajeMod);
 
-                echo "Ingrese el codigo de viaje nuevo: \n";
-                $codViajeMod = trim(fgets(STDIN));
-                $viaje1->setCodigoViaje($codViajeMod);
+                        }
 
+                        echo "Desea modificar el destino de viaje? \n";
+                        $respD = trim(fgets(STDIN));
+                        if ($respD == "si"){
+
+                            echo "Ingrese el destino de viaje nuevo: \n";
+                            $destViajeMod = trim(fgets(STDIN));
+                            $viaje1->setDestino($destViajeMod);
+
+                        }
+
+                        echo "Desea modificar la cantidad maxima de pasajeros? \n";
+                        $respCMP = trim(fgets(STDIN));
+                        if ($respCMP == "si"){
+
+                            echo "Ingrese el codigo de viaje nuevo: \n";
+                            $cantMaxPasMod = trim(fgets(STDIN));
+                            $viaje1->setMaximoPasajeros($cantMaxPasMod);
+
+                        }
+
+                    }
+                    break;
+
+                case 2:
+                    //metodo modificarPasajero objeto Pasajero.
+                    //*******************************************/
+                    echo "Desea modificar los datos de un pasajero?\n";
+                    $respModPas = trim(fgets(STDIN));
+                    if ($respModPas == "si" ){
+
+                        echo "Ingrese el numero de documento del pasajero actual para modificar sus datos: \n";
+                        $nroDocPasajero = (trim(fgets(STDIN)));
+
+                        echo "Datos nuevos \n";
+
+                        echo "Ingrese el nombre del pasajero: \n";
+                        $nombreMod = trim(fgets(STDIN));
+
+                        echo "Ingrese el apellido del pasajero: \n";
+                        $apellidoMod = trim(fgets(STDIN));
+
+                        echo "Ingrese el telefono del pasajero: \n";
+                        $telefonoMod = trim(fgets(STDIN));
+
+                        $viaje1->cambiarDatosUnPasajero($nroDocPasajero, $nombreMod, $apellidoMod, $telefonoMod);
+                    }
+                    break;
+
+                case 3:
+                        //Metodo agregarPasajero objeto Viaje.
+                        //***************************** */
+                        echo "Desea agregar un pasajero: \n";
+                        $respAgregarPas = trim(fgets(STDIN));
+                        if ($respAgregarPas == "si"){
+                            echo "Ingrese el numero de documento: \n";
+                            $nroDocumentoNuevo = trim(fgets(STDIN));
+                    
+                                echo "Datos pasajero a agregar \n";
+                    
+                                echo "Ingrese el nombre del pasajero nuevo: \n";
+                                $nombreMod = trim(fgets(STDIN));
+                    
+                                echo "Ingrese el apellido del pasajero nuevo: \n";
+                                $apellidoMod = trim(fgets(STDIN));
+                    
+                                echo "Ingrese el telefono del pasajero nuevo: \n";
+                                $telefonoMod = trim(fgets(STDIN));
+                                
+                                $viaje1->agregarPasajero($nroDocumentoNuevo, $nombreMod, $apellidoMod, $telefonoMod);
+                        }
+
+                    break;
+
+                default:
+                    break;
             }
-
-            echo "Desea modificar el destino de viaje? \n";
-            $respD = trim(fgets(STDIN));
-            if ($respD == "si"){
-
-                echo "Ingrese el destino de viaje nuevo: \n";
-                $destViajeMod = trim(fgets(STDIN));
-                $viaje1->setDestino($destViajeMod);
-
-            }
-
-            echo "Desea modificar la cantidad maxima de pasajeros? \n";
-            $respCMP = trim(fgets(STDIN));
-            if ($respCMP == "si"){
-
-                echo "Ingrese el codigo de viaje nuevo: \n";
-                $cantMaxPasMod = trim(fgets(STDIN));
-                $viaje1->setMaximoPasajeros($cantMaxPasMod);
-
-            }
-
-        }
-        //Bloque para modificar datos de un pasajero.
-        //*******************************************/
-        echo "Desea modificar los datos de un pasajero?\n";
-        $respModPas = trim(fgets(STDIN));
-        if ($respModPas == "si" ){
-
-            echo "Ingrese el numero de documento del pasajero actual para modificar sus datos: \n";
-            $nroDocPasajero = (trim(fgets(STDIN)));
-
-            echo "Datos nuevos \n";
-
-            echo "Ingrese el nombre del pasajero: \n";
-            $nombreMod = trim(fgets(STDIN));
-
-            echo "Ingrese el apellido del pasajero: \n";
-            $apellidoMod = trim(fgets(STDIN));
-
-            echo "Ingrese el telefono del pasajero: \n";
-            $telefonoMod = trim(fgets(STDIN));
-
-            $viaje1->cambiarDatosUnPasajero($nroDocPasajero, $nombreMod, $apellidoMod, $telefonoMod);
-        }
-
-
-
-        //Metodo agregarPasajero objeto Viaje.
-        //***************************** */
-        echo "Desea agregar un pasajero: \n";
-        $respAgregarPas = trim(fgets(STDIN));
-        if ($respAgregarPas == "si"){
-            echo "Ingrese el numero de documento: \n";
-            $nroDocumentoNuevo = trim(fgets(STDIN));
-    
-                echo "Datos pasajero a agregar \n";
-    
-                echo "Ingrese el nombre del pasajero nuevo: \n";
-                $nombreMod = trim(fgets(STDIN));
-    
-                echo "Ingrese el apellido del pasajero nuevo: \n";
-                $apellidoMod = trim(fgets(STDIN));
-    
-                echo "Ingrese el telefono del pasajero nuevo: \n";
-                $telefonoMod = trim(fgets(STDIN));
-                
-                $viaje1->agregarPasajero($nroDocumentoNuevo, $nombreMod, $apellidoMod, $telefonoMod);
-        }
-
+        } while ($varSwitch != 4);
+        
         //Instanciacion objeto responsable.
         //***************************** */
         echo "\n--------Datos del responsable del viaje--------\n\n";

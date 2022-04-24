@@ -46,7 +46,7 @@ class ResponsableV{
     }
 
     public function __toString(){
-        return "Numero empleado: ".$this->getNumeroEmpleado().". Numero licencia: ".$this->getNumeroLicencia().
-        ". Nombre: ".$this->getNombre()." ".$this->getApellido();
+        return "--------Responsable del viaje--------\n\nNumero empleado: ".$this->getNumeroEmpleado().". Numero licencia: "
+        .$this->getNumeroLicencia().". Nombre: ".$this->getNombre()." ".$this->getApellido();
     }
 }

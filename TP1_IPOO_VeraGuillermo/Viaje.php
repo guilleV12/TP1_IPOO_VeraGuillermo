@@ -132,9 +132,9 @@ class Viaje{
         $arrayPas = [];
         $arrayPas = $this->getPasajeros();
         $countPas = $this->getPasajerosActual();
-        echo "Datos de pasajeros: \n";
-        for ($i=0; $i < $countPas; $i++) { 
-            echo $arrayPas[$i]->__toString().".\n";
+        echo "\n--------Datos de pasajeros:--------\n\n";
+        foreach ($this->getPasajeros() as $objPasaj) { 
+            echo $objPasaj->__toString().".\n";
         }
     }
 

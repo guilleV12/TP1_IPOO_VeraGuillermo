@@ -134,7 +134,7 @@ $arrayPasajeros[8] = $pasajero9;
 
         //Instanciacion objeto responsable.
         //***************************** */
-        echo "Datos del responsable del viaje\n";
+        echo "\n--------Datos del responsable del viaje--------\n\n";
         echo "Ingrese el numero del numero de empleado: \n";
         $numEmpleado = trim(fgets(STDIN));
         echo "Ingrese el numero licencia: \n";
@@ -150,7 +150,7 @@ $arrayPasajeros[8] = $pasajero9;
         
         //Prueba Metodo toString objeto Viaje.
         //*******************************************/
-        echo "Datos del viaje: \n".$viaje1->__toString();
+        echo "\n--------Datos del viaje: --------\n\n".$viaje1->__toString();
         echo "\n";
         
         }

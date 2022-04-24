@@ -7,7 +7,7 @@ class Viaje{
     private $maximoPasajeros;
     private $pasajerosActual;
     private $pasajeros;
-    private $responable_viaje;
+    private $obj_responable_viaje;
 
     
     public function __construct($codViaje, $dest, $maxPas, $pasAct, $pasaj, $respV){
@@ -16,7 +16,7 @@ class Viaje{
         $this->maximoPasajeros = $maxPas;
         $this->pasajerosActual = $pasAct;
         $this->pasajeros = $pasaj;
-        $this->responable_viaje = $respV;
+        $this->obj_responable_viaje = $respV;
     }
 
     public function setCodigoViaje($cod){
@@ -60,11 +60,11 @@ class Viaje{
     }
 
     public function setResponsableViaje($respViaje){
-        $this->responable_viaje = $respViaje;
+        $this->obj_responable_viaje = $respViaje;
     }
 
     public function getResponsableViaje(){
-        return $this->responable_viaje;
+        return $this->obj_responable_viaje;
     }
 
     public function __toString() {

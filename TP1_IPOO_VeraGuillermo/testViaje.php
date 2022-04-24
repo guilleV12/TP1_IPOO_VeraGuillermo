@@ -3,7 +3,7 @@ include 'Viaje.php';
 include 'Pasajero.php';
 include 'ResponsableV.php';
 
-//Arreglo de objetos pasajero.
+//instanciacion de objetos Pasajero.
 $pasajero1 = new Pasajero("Jorge", "Gonzales", 13727931, 2944121212);
 $pasajero2 = new Pasajero("Pablo", "Fernandez", 21729034, 2944232323);
 $pasajero3 = new Pasajero("Cristian", "Lopez", 40194852, 2944343434);
@@ -14,7 +14,7 @@ $pasajero7 = new Pasajero("Agustina", "Sanchez", 32957843, 2944676767);
 $pasajero8 = new Pasajero("Camila", "Caruso", 33912738, 2944787878);
 $pasajero9 = new Pasajero("Maria", "Banega", 41893857, 2944898989);
 
-
+//Carga de arreglo de objetos Pasajero.
 $arrayPasajeros = [];
 $arrayPasajeros[0] = $pasajero1;
 $arrayPasajeros[1] = $pasajero2;
@@ -28,7 +28,7 @@ $arrayPasajeros[8] = $pasajero9;
 
     /* Programa Principal */
 
-        //Bloque de carga de informacion de viaje.
+        //Instanciacion de objeto Viaje.
         //****************************************/
         echo "Desea cargar informacion de un viaje?\n";
         $resp = trim(fgets(STDIN));
@@ -48,7 +48,7 @@ $arrayPasajeros[8] = $pasajero9;
             $viaje1 = new Viaje($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "");
 
 
-        //Bloque de modificar datos.
+        //Metodo modificarPasajero objeto Viaje.
         //****************************************/
         echo "Desea modificar los datos del viaje? \n";
         $respMod = trim(fgets(STDIN));
@@ -110,7 +110,7 @@ $arrayPasajeros[8] = $pasajero9;
 
 
 
-        //Agregar pasajeros al viaje.
+        //Metodo agregarPasajero objeto Viaje.
         //***************************** */
         echo "Desea agregar un pasajero: \n";
         $respAgregarPas = trim(fgets(STDIN));
@@ -132,7 +132,7 @@ $arrayPasajeros[8] = $pasajero9;
                 $viaje1->agregarPasajero($nroDocumentoNuevo, $nombreMod, $apellidoMod, $telefonoMod);
         }
 
-        //Agregar datos del responsable del viaje.
+        //Instanciacion objeto responsable.
         //***************************** */
         echo "Datos del responsable del viaje\n";
         echo "Ingrese el numero del numero de empleado: \n";
@@ -148,7 +148,7 @@ $arrayPasajeros[8] = $pasajero9;
 
 
         
-        //Bloque para mostrar informacion.
+        //Prueba Metodo toString objeto Viaje.
         //*******************************************/
         echo "Datos del viaje: \n".$viaje1->__toString();
         echo "\n";

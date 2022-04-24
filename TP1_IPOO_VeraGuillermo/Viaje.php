@@ -44,7 +44,7 @@ class Viaje{
     }
 
     public function setPasajerosActual($pasA){
-        $this->pasajeros_actual = $pasA;
+        $this->pasajerosActual = $pasA;
     }
 
     public function getPasajerosActual(){
@@ -122,7 +122,7 @@ class Viaje{
         }else{
             $this->setPasajerosActual($cantPasaj+1);
             $nuevoPasaj = new Pasajero($nom, $ape, $numDoc, $tel);
-            $arrayPasaj[$i+1] = $nuevoPasaj;
+            $arrayPasaj[$i] = $nuevoPasaj;
             $this->setPasajeros($arrayPasaj);
         }
     }

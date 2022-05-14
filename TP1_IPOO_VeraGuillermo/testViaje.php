@@ -2,6 +2,8 @@
 include 'Viaje.php';
 include 'Pasajero.php';
 include 'ResponsableV.php';
+include 'Terrestre.php';
+include 'Aereo.php';
 
 //instanciacion de objetos Pasajero.
 $pasajero1 = new Pasajero("Jorge", "Gonzales", 13727931, 2944121212);
@@ -34,6 +36,9 @@ $arrayPasajeros[8] = $pasajero9;
         $resp = trim(fgets(STDIN));
         if ($resp == "si") {
 
+            echo "Ingrese el tipo de viaje: \n";
+            $tipoViaje = trim(fgets(STDIN));            
+
             echo "Ingrese el codigo de viaje: \n";
             $codiViaje = trim(fgets(STDIN));
 
@@ -43,9 +48,10 @@ $arrayPasajeros[8] = $pasajero9;
             echo "Ingrese la cantidad maxima de pasajeros: \n";
             $cantMaxPasajeros = trim(fgets(STDIN));
 
+            echo "Ingrese el importe del viaje: \n";
+            $importe = trim(fgets(STDIN));
 
-            $cantPasajActual = count($arrayPasajeros);
-            $viaje1 = new Viaje($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "");
+            
 
         //Switch para ejecutar metodos
         do {    
@@ -53,7 +59,8 @@ $arrayPasajeros[8] = $pasajero9;
             echo "1 - modificar datos del viaje\n";
             echo "2 - modificar datos de un pasajero\n";
             echo "3 - agregar un pasajero\n";
-            echo "4 - salir del menu\n";
+            echo "4 - vender un pasaje\n";
+            echo "5 - salir del menu\n";
             $varSwitch = trim(fgets(STDIN));
             switch ($varSwitch) {
                 case 1:
@@ -146,15 +153,75 @@ $arrayPasajeros[8] = $pasajero9;
 
                     break;
 
+                case 4:
+                        //Metodo venderPasaje
+                        //****************** */
+                        echo "Desea vender un pasaje?: \n";
+                        $respVenderPasaje = trim(fgets(STDIN));
+                        if ($respVenderPasaje == "si"){
+                            echo "Es de ida y vuelta?: \n";
+                                $idaYVuel = trim(fgets(STDIN));
+
+                                if ($tipoViaje == "aereo"){
+                                    $claseViaje = "Aereo";
+
+                                    echo "Categoria de asiento?: \n";
+                                    $categAsiento = trim(fgets(STDIN));
+
+                                    echo "Tiene escalas?: \n";
+                                    $escalas = trim(fgets(STDIN));
+
+                                    $cantPasajActual = count($arrayPasajeros);
+                                    $viaje1 = new Aereo($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "", $importe, $idaYVuel, 1, $categAsiento, "AeroStar", $escalas);
+                                } else {
+                                    $claseViaje = "Terrestre";
+
+                                    echo "Tipo de asiento?: \n";
+                                    $asientoTipo = trim(fgets(STDIN));
+
+                                    $cantPasajActual = count($arrayPasajeros);
+                                    $viaje1 = new Terrestre($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "", $importe, $idaYVuel, $asientoTipo);
+
+                                }
+
+                            
+                                    //vender pasaje
+                                    echo "\n-------------Vender pasaje-----------\n";
+
+                                    echo "Ingrese el numero de documento: \n";
+                                        $nroDocVenta = trim(fgets(STDIN));
+                                                
+                                        echo "Datos pasajero a agregar \n";
+                                                
+                                        echo "Ingrese el nombre del pasajero nuevo: \n";
+                                        $nombreVenta = trim(fgets(STDIN));
+                                                
+                                        echo "Ingrese el apellido del pasajero nuevo: \n";
+                                        $apellidoVenta = trim(fgets(STDIN));
+                                                
+                                        echo "Ingrese el telefono del pasajero nuevo: \n";
+                                        $telefonoVenta = trim(fgets(STDIN));
+                                    
+                                    $pasajeroVenta = new Pasajero($nombreVenta, $apellidoVenta, $nroDocVenta, $telefonoVenta);
+
+                                    $impPasaje = $viaje1->venderPasaje($pasajeroVenta);
+
+                                    echo "\n------importe del pasaje--------\n";
+                                    echo $impPasaje;
+
+                        }
+
+                    break;
+
                 default:
                     break;
             }
-        } while ($varSwitch != 4);
+        } while ($varSwitch != 5);
         
         //Instanciacion objeto responsable.
         //***************************** */
         echo "\n--------Datos del responsable del viaje--------\n\n";
-        echo "Ingrese el numero del numero de empleado: \n";
+        echo "Ingrese el numero de empleado: \n";
         $numEmpleado = trim(fgets(STDIN));
         echo "Ingrese el numero licencia: \n";
         $numLicencia = trim(fgets(STDIN));
@@ -166,10 +233,10 @@ $arrayPasajeros[8] = $pasajero9;
         $viaje1->setResponsableViaje($responsable1);
 
 
-        
-        //Prueba Metodo toString objeto Viaje.
-        //*******************************************/
-        echo "\n--------Datos del viaje: --------\n\n".$viaje1->__toString();
-        echo "\n";
-        
+
+
+        //__toString de la clase viaje
+        echo "\n---------------Datos del viaje:------------------\n";
+        echo $viaje1->__toString();
+
         }

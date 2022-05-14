@@ -8,15 +8,19 @@ class Viaje{
     private $pasajerosActual;
     private $pasajeros;
     private $obj_responable_viaje;
+    private $importe;
+    private $ida_y_vuelta;
 
-    
-    public function __construct($codViaje, $dest, $maxPas, $pasAct, $pasaj, $respV){
+    //constructor
+    public function __construct($codViaje, $dest, $maxPas, $pasAct, $pasaj, $respV, $impor, $idaVuelta){
         $this->codigoViaje = $codViaje;
         $this->destino = $dest;
         $this->maximoPasajeros = $maxPas;
         $this->pasajerosActual = $pasAct;
         $this->pasajeros = $pasaj;
         $this->obj_responable_viaje = $respV;
+        $this->importe = $impor;
+        $this->ida_y_vuelta = $idaVuelta;
     }
 
     public function setCodigoViaje($cod){
@@ -67,8 +71,25 @@ class Viaje{
         return $this->obj_responable_viaje;
     }
 
+    public function setImporte($imp){
+        $this->importe = $imp;
+    }
+
+    public function getImporte(){
+        return $this->importe;
+    }
+
+    public function setIdaYVuelta($idaV){
+        $this->ida_y_vuelta = $idaV;
+    }
+
+    public function getIdaYVuelta(){
+        return $this->ida_y_vuelta;
+    }
+
     public function __toString() {
-        return "Codigo de viaje: ".$this->getCodigoViaje().", Destino: ".$this->getDestino().
+        return "\n---------------Datos del viaje:---------------\n".
+        "Codigo de viaje: ".$this->getCodigoViaje().", Destino: ".$this->getDestino().".".
         ".\nCantidad maxima de pasajeros: ".$this->getMaximoPasajeros().", Pasajeros actuales en el viaje: ".$this->getPasajerosActual().
         ".\n".$this->mostrarPasajeros()."\n".$this->getResponsableViaje()->__toString();
     }
@@ -137,5 +158,18 @@ class Viaje{
             echo $objPasaj->__toString().".\n";
         }
     }
+
+    public function hayPasajesDisponible(){
+        $cantPas = $this->getPasajerosActual();
+        $cantAsientos = $this->getMaximoPasajeros();
+        $hayPasajes = false;
+        if ($cantPas < $cantAsientos){
+            $hayPasajes = true;
+            
+        }
+        return $hayPasajes;
+    }
+
+
 
 }

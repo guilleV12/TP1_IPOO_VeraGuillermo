@@ -37,19 +37,40 @@ $arrayPasajeros[8] = $pasajero9;
         if ($resp == "si") {
 
             echo "Ingrese el tipo de viaje: \n";
-            $tipoViaje = trim(fgets(STDIN));            
+            $tipoViaje = trim(fgets(STDIN));
+            if (strtolower($tipoViaje) == "aereo"){
+                $claseViaje = "Aereo";
 
-            echo "Ingrese el codigo de viaje: \n";
-            $codiViaje = trim(fgets(STDIN));
+                echo "Ingrese el codigo de viaje: \n";
+                $codiViaje = trim(fgets(STDIN));
 
-            echo "Ingrese el destino del viaje: \n";
-            $destViaje = trim(fgets(STDIN));
+                echo "Ingrese el destino del viaje: \n";
+                $destViaje = trim(fgets(STDIN));
 
-            echo "Ingrese la cantidad maxima de pasajeros: \n";
-            $cantMaxPasajeros = trim(fgets(STDIN));
+                echo "Ingrese la cantidad maxima de pasajeros: \n";
+                $cantMaxPasajeros = trim(fgets(STDIN));
 
-            echo "Ingrese el importe del viaje: \n";
-            $importe = trim(fgets(STDIN));
+                echo "Ingrese el importe del viaje: \n";
+                $importe = trim(fgets(STDIN));
+                $cantPasajActual = count($arrayPasajeros);
+                $viaje1 = new Aereo($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "", $importe, "", 1, "", "AeroStar", "No");           
+            } else {
+                $claseViaje = "Terrestre";
+
+                echo "Ingrese el codigo de viaje: \n";
+                $codiViaje = trim(fgets(STDIN));
+
+                echo "Ingrese el destino del viaje: \n";
+                $destViaje = trim(fgets(STDIN));
+
+                echo "Ingrese la cantidad maxima de pasajeros: \n";
+                $cantMaxPasajeros = trim(fgets(STDIN));
+
+                echo "Ingrese el importe del viaje: \n";
+                $importe = trim(fgets(STDIN));
+                $cantPasajActual = count($arrayPasajeros);
+                $viaje1 = new Terrestre($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "", $importe, "","" );
+            }
 
             
 
@@ -94,7 +115,7 @@ $arrayPasajeros[8] = $pasajero9;
                         $respCMP = trim(fgets(STDIN));
                         if ($respCMP == "si"){
 
-                            echo "Ingrese el codigo de viaje nuevo: \n";
+                            echo "Ingrese la cantidad de pasajeros nueva: \n";
                             $cantMaxPasMod = trim(fgets(STDIN));
                             $viaje1->setMaximoPasajeros($cantMaxPasMod);
 
@@ -159,28 +180,26 @@ $arrayPasajeros[8] = $pasajero9;
                         echo "Desea vender un pasaje?: \n";
                         $respVenderPasaje = trim(fgets(STDIN));
                         if ($respVenderPasaje == "si"){
+   
                             echo "Es de ida y vuelta?: \n";
-                                $idaYVuel = trim(fgets(STDIN));
+                            $idaYVuel = trim(fgets(STDIN));
+                            $viaje1->setIdaYVuelta($idaYVuel);
 
-                                if ($tipoViaje == "aereo"){
-                                    $claseViaje = "Aereo";
-
+                                if (strtolower($tipoViaje) == "aereo"){
                                     echo "Categoria de asiento?: \n";
                                     $categAsiento = trim(fgets(STDIN));
+                                    $viaje1->setCategoriaAsiento($categAsiento);
 
                                     echo "Tiene escalas?: \n";
                                     $escalas = trim(fgets(STDIN));
+                                    $viaje1->setEscalas($escalas);
 
-                                    $cantPasajActual = count($arrayPasajeros);
-                                    $viaje1 = new Aereo($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "", $importe, $idaYVuel, 1, $categAsiento, "AeroStar", $escalas);
                                 } else {
                                     $claseViaje = "Terrestre";
 
                                     echo "Tipo de asiento?: \n";
                                     $asientoTipo = trim(fgets(STDIN));
-
-                                    $cantPasajActual = count($arrayPasajeros);
-                                    $viaje1 = new Terrestre($codiViaje, $destViaje, $cantMaxPasajeros, $cantPasajActual, $arrayPasajeros, "", $importe, $idaYVuel, $asientoTipo);
+                                    $viaje1->setTipoAsiento($asientoTipo);
 
                                 }
 
